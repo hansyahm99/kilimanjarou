@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>kilimanjarou</title>
+</head>
+<style>
+    h1{ margin-bottom: 40px; color: rgb(253, 253, 253);}
+    body{background-color: black;
+    background-image: url(kilimanjaro.jpg);
+    background-size: 1400px auto;
+    background-repeat: no-repeat;
+    background-position: center top 18%;
+    text-align: center;}
+    body{font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 50px;}
+    
+    #notearea{
+        display: none;
+        margin-top: 50px;}
+    
+    textarea{
+        width: 50%;
+        height: 100px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: rgb(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: rgb(15, 15, 15)
+        }  
+
+    button{
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border: 1px solid rgb(255, 255, 255, 0.3);
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color : rgb(255, 255, 255)}
+
+    p{color: white;}
+</style>
+<body>
+    <h1>KILIMANJAROU</h1>
+    <button id="startbtn">TULIS</button>
+    <button id="closebtn">TUTUP</button>
+    <div id="notearea">
+        <textarea placeholder="menulis catatan mu..."></textarea>
+    </div>
+    <script>
+        const startbtn = document.getElementById('startbtn');
+        const closebtn = document.getElementById('closebtn');
+        const notearea = document.getElementById('notearea');
+        const textarea = notearea.querySelector('textarea');
+
+        const savednote = localStorage.getItem('catatan');
+        if (savednote) {
+            textarea.value = savednote;
+        }
+
+        startbtn.addEventListener('click',() => {
+            notearea.style.display = 'block';
+            startbtn.style.display = 'none';
+        });
+
+        closebtn.addEventListener('click',() =>{
+            notearea.style.display = 'none';
+            startbtn.style.display = 'inline-block';
+        });
+
+        textarea.addEventListener('input',() =>{
+            localStorage.setItem('catatan', textarea.value);
+        });
+
+    </script>
+    <p style="line-height: 0.1;">
+        Selamat datang di ruang catatanmu! Di sini kamu bisa menulis,</p> 
+        <p style="line-height:0.1;">menyimpan, dan mengatur berbagai ide, to-do list, atau hal-hal kecil</p>
+        <p style="line-height: 0.1;">yang ingin kamu ingat.Semua catatanmu tersimpan dengan aman dan mudah diakses kapan saja.</p> 
+        
+</body>
+</html>
